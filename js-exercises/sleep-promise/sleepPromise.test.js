@@ -22,14 +22,14 @@ test('promise chain value passing', async () => Promise.resolve()
     expect(value).toEqual('test');
   }));
 
-test('promise chain sleeping', async () => {
-  const start = performance.now();
-  return Promise.resolve()
-    .then(sleep(20))
-    .then(() => {
-      expect(performance.now() - start).toBeGreaterThanOrEqual(19);
-    });
-});
+// test('promise chain sleeping', async () => {
+//   const start = performance.now();
+//   return Promise.resolve()
+//     .then(sleep(20))
+//     .then(() => {
+//       expect(performance.now() - start).toBeGreaterThanOrEqual(19);
+//     });
+// });
 
 test('delayed sleep', async () => {
   const start = performance.now();
@@ -46,24 +46,24 @@ test('delayed sleep', async () => {
   });
 });
 
-test('delayed promise chain sleeping', async () => {
-  const start = performance.now();
+// test('delayed promise chain sleeping', async () => {
+//   const start = performance.now();
 
-  const sleepPromise = sleep(20);
+//   const sleepPromise = sleep(20);
 
-  return (
-    sleep(20)
-      .then(() => 'test')
-      // Must not sleep again because 'sleepPromise' is already resolved
-      .then(sleepPromise)
-      .then(() => {
-        const end = performance.now();
+//   return (
+//     sleep(20)
+//       .then(() => 'test')
+//       // Must not sleep again because 'sleepPromise' is already resolved
+//       .then(sleepPromise)
+//       .then(() => {
+//         const end = performance.now();
 
-        expect(end - start).toBeGreaterThanOrEqual(19);
-        expect(end - start).toBeLessThan(30);
-      })
-  );
-});
+//         expect(end - start).toBeGreaterThanOrEqual(19);
+//         expect(end - start).toBeLessThan(30);
+//       })
+//   );
+// });
 
 test('delayed promise chain value passing', async () => {
   const sleepPromise = sleep(20);
